@@ -1,0 +1,47 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+
+# Dataset folders
+data/raw/*
+data/processed/*
+
+# Keep folder but ignore files
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Model files
+models/*.pkl
+models/*.joblib
+
+# Logs
+logs/
+*.log
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Streamlit cache
+.streamlit/
+
+# Temporary files
+tmp/
+*.tmp
