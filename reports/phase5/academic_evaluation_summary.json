@@ -1,0 +1,369 @@
+{
+    "phase_two_summary": "reports\\phase2\\feature_engineering_summary.json",
+    "baseline_predictions": "data\\processed\\phase3\\baseline_test_predictions.csv.gz",
+    "deep_predictions": "data\\processed\\phase4\\deep_test_predictions.csv.gz",
+    "extreme_thresholds": [
+        {
+            "target_column": "precipitation_target_t_plus_24h",
+            "target_variable": "precipitation",
+            "horizon_hours": 24,
+            "extreme_threshold": 3.4,
+            "threshold_strategy": "95th percentile of positive training precipitation to avoid zero-inflation bias.",
+            "training_extreme_support": 502,
+            "training_total_samples": 86654
+        },
+        {
+            "target_column": "precipitation_target_t_plus_48h",
+            "target_variable": "precipitation",
+            "horizon_hours": 48,
+            "extreme_threshold": 3.4,
+            "threshold_strategy": "95th percentile of positive training precipitation to avoid zero-inflation bias.",
+            "training_extreme_support": 502,
+            "training_total_samples": 86654
+        },
+        {
+            "target_column": "precipitation_target_t_plus_72h",
+            "target_variable": "precipitation",
+            "horizon_hours": 72,
+            "extreme_threshold": 3.4,
+            "threshold_strategy": "95th percentile of positive training precipitation to avoid zero-inflation bias.",
+            "training_extreme_support": 502,
+            "training_total_samples": 86654
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_24h",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 24,
+            "extreme_threshold": 39.226,
+            "threshold_strategy": "95th percentile of the full training temperature distribution.",
+            "training_extreme_support": 4340,
+            "training_total_samples": 86654
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_48h",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 48,
+            "extreme_threshold": 39.226,
+            "threshold_strategy": "95th percentile of the full training temperature distribution.",
+            "training_extreme_support": 4340,
+            "training_total_samples": 86654
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_72h",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 72,
+            "extreme_threshold": 39.226,
+            "threshold_strategy": "95th percentile of the full training temperature distribution.",
+            "training_extreme_support": 4340,
+            "training_total_samples": 86654
+        }
+    ],
+    "mean_regression_metrics_by_model_family": {
+        "baseline": {
+            "rmse": 1.241997,
+            "mae": 0.758536,
+            "r2": 0.492271
+        },
+        "deep_learning": {
+            "rmse": 1.218275,
+            "mae": 0.763926,
+            "r2": 0.497168
+        }
+    },
+    "mean_extreme_metrics_by_model_family": {
+        "baseline": {
+            "precision": 0.418302,
+            "recall": 0.373395,
+            "f1": 0.394513
+        },
+        "deep_learning": {
+            "precision": 0.412405,
+            "recall": 0.392399,
+            "f1": 0.402135
+        }
+    },
+    "rmse_comparison": [
+        {
+            "target_column": "precipitation_target_t_plus_24h",
+            "target_variable": "precipitation",
+            "horizon_hours": 24,
+            "baseline": 0.6300797559336263,
+            "deep_learning": 0.6242049507345592,
+            "deep_minus_baseline_rmse": -0.005874805199067135
+        },
+        {
+            "target_column": "precipitation_target_t_plus_48h",
+            "target_variable": "precipitation",
+            "horizon_hours": 48,
+            "baseline": 0.6349482462420402,
+            "deep_learning": 0.6333088371061558,
+            "deep_minus_baseline_rmse": -0.00163940913588434
+        },
+        {
+            "target_column": "precipitation_target_t_plus_72h",
+            "target_variable": "precipitation",
+            "horizon_hours": 72,
+            "baseline": 0.6352980790640352,
+            "deep_learning": 0.6359602762473123,
+            "deep_minus_baseline_rmse": 0.0006621971832770912
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_24h",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 24,
+            "baseline": 1.5443155467990424,
+            "deep_learning": 1.5542348095954683,
+            "deep_minus_baseline_rmse": 0.009919262796425965
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_48h",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 48,
+            "baseline": 1.896104150582752,
+            "deep_learning": 1.8182857149564906,
+            "deep_minus_baseline_rmse": -0.07781843562626145
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_72h",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 72,
+            "baseline": 2.111235001080534,
+            "deep_learning": 2.0436526224034965,
+            "deep_minus_baseline_rmse": -0.06758237867703754
+        }
+    ],
+    "f1_comparison": [
+        {
+            "target_column": "precipitation_target_t_plus_24h",
+            "target_variable": "precipitation",
+            "horizon_hours": 24,
+            "baseline": 0.0,
+            "deep_learning": 0.0,
+            "deep_minus_baseline_f1": 0.0
+        },
+        {
+            "target_column": "precipitation_target_t_plus_48h",
+            "target_variable": "precipitation",
+            "horizon_hours": 48,
+            "baseline": 0.0,
+            "deep_learning": 0.0,
+            "deep_minus_baseline_f1": 0.0
+        },
+        {
+            "target_column": "precipitation_target_t_plus_72h",
+            "target_variable": "precipitation",
+            "horizon_hours": 72,
+            "baseline": 0.0,
+            "deep_learning": 0.0,
+            "deep_minus_baseline_f1": 0.0
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_24h",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 24,
+            "baseline": 0.8500400962309543,
+            "deep_learning": 0.8488645262333594,
+            "deep_minus_baseline_f1": -0.0011755699975949385
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_48h",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 48,
+            "baseline": 0.7794117647058824,
+            "deep_learning": 0.7987271280827367,
+            "deep_minus_baseline_f1": 0.019315363376854355
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_72h",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 72,
+            "baseline": 0.7376237623762376,
+            "deep_learning": 0.7652173913043478,
+            "deep_minus_baseline_f1": 0.027593628928110236
+        }
+    ],
+    "best_regression_model_by_target": [
+        {
+            "target_column": "precipitation_target_t_plus_24h",
+            "model_family": "deep_learning",
+            "model_name": "gru",
+            "target_variable": "precipitation",
+            "horizon_hours": 24,
+            "sample_count": 18570,
+            "rmse": 0.6242049507345592,
+            "mae": 0.15785940126915066,
+            "r2": 0.0706893097783512
+        },
+        {
+            "target_column": "precipitation_target_t_plus_48h",
+            "model_family": "deep_learning",
+            "model_name": "gru",
+            "target_variable": "precipitation",
+            "horizon_hours": 48,
+            "sample_count": 18570,
+            "rmse": 0.6333088371061558,
+            "mae": 0.17672044878877674,
+            "r2": 0.04330408323516344
+        },
+        {
+            "target_column": "precipitation_target_t_plus_72h",
+            "model_family": "baseline",
+            "model_name": "random_forest",
+            "target_variable": "precipitation",
+            "horizon_hours": 72,
+            "sample_count": 18570,
+            "rmse": 0.6352980790640352,
+            "mae": 0.1308709471212202,
+            "r2": 0.033700221461398616
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_24h",
+            "model_family": "baseline",
+            "model_name": "random_forest",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 24,
+            "sample_count": 18570,
+            "rmse": 1.5443155467990424,
+            "mae": 1.1322887491072993,
+            "r2": 0.9608548188204548
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_48h",
+            "model_family": "deep_learning",
+            "model_name": "gru",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 48,
+            "sample_count": 18570,
+            "rmse": 1.8182857149564906,
+            "mae": 1.3669642333517038,
+            "r2": 0.9456672445583271
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_72h",
+            "model_family": "deep_learning",
+            "model_name": "gru",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 72,
+            "sample_count": 18570,
+            "rmse": 2.0436526224034965,
+            "mae": 1.5426236210552415,
+            "r2": 0.9313109283553951
+        }
+    ],
+    "best_extreme_model_by_target": [
+        {
+            "target_column": "precipitation_target_t_plus_24h",
+            "model_family": "baseline",
+            "model_name": "random_forest",
+            "target_variable": "precipitation",
+            "horizon_hours": 24,
+            "extreme_threshold": 3.4,
+            "threshold_strategy": "95th percentile of positive training precipitation to avoid zero-inflation bias.",
+            "test_extreme_support": 161,
+            "test_predicted_extreme_support": 0,
+            "extreme_prevalence": 0.008669897684437265,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 161,
+            "true_negative": 18409
+        },
+        {
+            "target_column": "precipitation_target_t_plus_48h",
+            "model_family": "baseline",
+            "model_name": "random_forest",
+            "target_variable": "precipitation",
+            "horizon_hours": 48,
+            "extreme_threshold": 3.4,
+            "threshold_strategy": "95th percentile of positive training precipitation to avoid zero-inflation bias.",
+            "test_extreme_support": 161,
+            "test_predicted_extreme_support": 0,
+            "extreme_prevalence": 0.008669897684437265,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 161,
+            "true_negative": 18409
+        },
+        {
+            "target_column": "precipitation_target_t_plus_72h",
+            "model_family": "baseline",
+            "model_name": "random_forest",
+            "target_variable": "precipitation",
+            "horizon_hours": 72,
+            "extreme_threshold": 3.4,
+            "threshold_strategy": "95th percentile of positive training precipitation to avoid zero-inflation bias.",
+            "test_extreme_support": 160,
+            "test_predicted_extreme_support": 0,
+            "extreme_prevalence": 0.008616047388260635,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_positive": 0,
+            "false_positive": 0,
+            "false_negative": 160,
+            "true_negative": 18410
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_24h",
+            "model_family": "baseline",
+            "model_name": "random_forest",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 24,
+            "extreme_threshold": 39.226,
+            "threshold_strategy": "95th percentile of the full training temperature distribution.",
+            "test_extreme_support": 649,
+            "test_predicted_extreme_support": 598,
+            "extreme_prevalence": 0.0349488422186322,
+            "precision": 0.8862876254180602,
+            "recall": 0.8166409861325116,
+            "f1": 0.8500400962309543,
+            "true_positive": 530,
+            "false_positive": 68,
+            "false_negative": 119,
+            "true_negative": 17853
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_48h",
+            "model_family": "deep_learning",
+            "model_name": "gru",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 48,
+            "extreme_threshold": 39.226,
+            "threshold_strategy": "95th percentile of the full training temperature distribution.",
+            "test_extreme_support": 649,
+            "test_predicted_extreme_support": 608,
+            "extreme_prevalence": 0.0349488422186322,
+            "precision": 0.8256578947368421,
+            "recall": 0.773497688751926,
+            "f1": 0.7987271280827367,
+            "true_positive": 502,
+            "false_positive": 106,
+            "false_negative": 147,
+            "true_negative": 17815
+        },
+        {
+            "target_column": "temperature_2m_target_t_plus_72h",
+            "model_family": "deep_learning",
+            "model_name": "gru",
+            "target_variable": "temperature_2m",
+            "horizon_hours": 72,
+            "extreme_threshold": 39.226,
+            "threshold_strategy": "95th percentile of the full training temperature distribution.",
+            "test_extreme_support": 649,
+            "test_predicted_extreme_support": 616,
+            "extreme_prevalence": 0.0349488422186322,
+            "precision": 0.7857142857142857,
+            "recall": 0.7457627118644068,
+            "f1": 0.7652173913043478,
+            "true_positive": 484,
+            "false_positive": 132,
+            "false_negative": 165,
+            "true_negative": 17789
+        }
+    ]
+}

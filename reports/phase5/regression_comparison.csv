@@ -1,0 +1,13 @@
+model_family,model_name,target_column,target_variable,horizon_hours,sample_count,rmse,mae,r2
+deep_learning,gru,precipitation_target_t_plus_24h,precipitation,24,18570,0.6242049507345592,0.15785940126915066,0.0706893097783512
+baseline,random_forest,precipitation_target_t_plus_24h,precipitation,24,18570,0.6300797559336263,0.12831344217913826,0.05311428139162011
+deep_learning,gru,precipitation_target_t_plus_48h,precipitation,48,18570,0.6333088371061558,0.17672044878877674,0.04330408323516344
+baseline,random_forest,precipitation_target_t_plus_48h,precipitation,48,18570,0.6349482462420402,0.13116318608212768,0.03834459126576806
+baseline,random_forest,precipitation_target_t_plus_72h,precipitation,72,18570,0.6352980790640352,0.1308709471212202,0.033700221461398616
+deep_learning,gru,precipitation_target_t_plus_72h,precipitation,72,18570,0.6359602762473123,0.1766360938514458,0.03168474064958349
+baseline,random_forest,temperature_2m_target_t_plus_24h,temperature_2m,24,18570,1.5443155467990424,1.1322887491072993,0.9608548188204548
+deep_learning,gru,temperature_2m_target_t_plus_24h,temperature_2m,24,18570,1.5542348095954683,1.162752745173346,0.9603503393102087
+deep_learning,gru,temperature_2m_target_t_plus_48h,temperature_2m,48,18570,1.8182857149564906,1.3669642333517038,0.9456672445583271
+baseline,random_forest,temperature_2m_target_t_plus_48h,temperature_2m,48,18570,1.896104150582752,1.4266752570151862,0.9409170919726041
+deep_learning,gru,temperature_2m_target_t_plus_72h,temperature_2m,72,18570,2.0436526224034965,1.5426236210552415,0.9313109283553951
+baseline,random_forest,temperature_2m_target_t_plus_72h,temperature_2m,72,18570,2.111235001080534,1.6019025885080727,0.926692795973298

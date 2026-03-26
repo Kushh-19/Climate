@@ -1,0 +1,7 @@
+target_column,target_variable,horizon_hours,extreme_threshold,threshold_strategy,training_extreme_support,training_total_samples
+precipitation_target_t_plus_24h,precipitation,24,3.4,95th percentile of positive training precipitation to avoid zero-inflation bias.,502,86654
+precipitation_target_t_plus_48h,precipitation,48,3.4,95th percentile of positive training precipitation to avoid zero-inflation bias.,502,86654
+precipitation_target_t_plus_72h,precipitation,72,3.4,95th percentile of positive training precipitation to avoid zero-inflation bias.,502,86654
+temperature_2m_target_t_plus_24h,temperature_2m,24,39.226,95th percentile of the full training temperature distribution.,4340,86654
+temperature_2m_target_t_plus_48h,temperature_2m,48,39.226,95th percentile of the full training temperature distribution.,4340,86654
+temperature_2m_target_t_plus_72h,temperature_2m,72,39.226,95th percentile of the full training temperature distribution.,4340,86654
