@@ -1,0 +1,139 @@
+{
+    "input_dataset": "data\\processed\\phase2\\baroda_supervised_unscaled.csv.gz",
+    "phase_two_artifact": "models\\artifacts\\phase2_feature_scaler.pkl",
+    "candidate_models": [
+        "persistence",
+        "random_forest"
+    ],
+    "selection_rule": "Best model per target variable is chosen by the lowest mean validation RMSE across the 24h, 48h, and 72h direct forecasts.",
+    "all_engineered_feature_count": 213,
+    "baseline_feature_count": 74,
+    "baseline_feature_columns": [
+        "temperature_2m",
+        "relative_humidity_2m",
+        "dew_point_2m",
+        "apparent_temperature",
+        "precipitation",
+        "rain",
+        "pressure_msl",
+        "surface_pressure",
+        "cloud_cover",
+        "cloud_cover_low",
+        "cloud_cover_mid",
+        "cloud_cover_high",
+        "wind_speed_10m",
+        "wind_speed_100m",
+        "wind_gusts_10m",
+        "wind_direction_10m_sin",
+        "wind_direction_10m_cos",
+        "wind_direction_100m_sin",
+        "wind_direction_100m_cos",
+        "hour_sin",
+        "hour_cos",
+        "day_of_week_sin",
+        "day_of_week_cos",
+        "month_sin",
+        "month_cos",
+        "day_of_year_sin",
+        "day_of_year_cos",
+        "is_weekend",
+        "temperature_2m_lag_1h",
+        "temperature_2m_lag_6h",
+        "temperature_2m_lag_24h",
+        "temperature_2m_lag_72h",
+        "relative_humidity_2m_lag_1h",
+        "relative_humidity_2m_lag_6h",
+        "relative_humidity_2m_lag_24h",
+        "relative_humidity_2m_lag_72h",
+        "precipitation_lag_1h",
+        "precipitation_lag_6h",
+        "precipitation_lag_24h",
+        "precipitation_lag_72h",
+        "pressure_msl_lag_1h",
+        "pressure_msl_lag_6h",
+        "pressure_msl_lag_24h",
+        "pressure_msl_lag_72h",
+        "cloud_cover_lag_1h",
+        "cloud_cover_lag_6h",
+        "cloud_cover_lag_24h",
+        "cloud_cover_lag_72h",
+        "wind_speed_10m_lag_1h",
+        "wind_speed_10m_lag_6h",
+        "wind_speed_10m_lag_24h",
+        "wind_speed_10m_lag_72h",
+        "temperature_2m_rolling_mean_24h",
+        "temperature_2m_rolling_std_24h",
+        "temperature_2m_rolling_mean_72h",
+        "temperature_2m_rolling_std_72h",
+        "relative_humidity_2m_rolling_mean_24h",
+        "relative_humidity_2m_rolling_std_24h",
+        "relative_humidity_2m_rolling_mean_72h",
+        "relative_humidity_2m_rolling_std_72h",
+        "pressure_msl_rolling_mean_24h",
+        "pressure_msl_rolling_std_24h",
+        "pressure_msl_rolling_mean_72h",
+        "pressure_msl_rolling_std_72h",
+        "cloud_cover_rolling_mean_24h",
+        "cloud_cover_rolling_std_24h",
+        "cloud_cover_rolling_mean_72h",
+        "cloud_cover_rolling_std_72h",
+        "wind_speed_10m_rolling_mean_24h",
+        "wind_speed_10m_rolling_std_24h",
+        "wind_speed_10m_rolling_mean_72h",
+        "wind_speed_10m_rolling_std_72h",
+        "precipitation_rolling_sum_24h",
+        "precipitation_rolling_sum_72h"
+    ],
+    "target_count": 6,
+    "splits": {
+        "train": {
+            "row_count": 86654,
+            "start": "2010-01-04 05:30:00",
+            "end": "2019-11-23 18:30:00"
+        },
+        "validation": {
+            "row_count": 18568,
+            "start": "2019-11-23 19:30:00",
+            "end": "2022-01-05 10:30:00"
+        },
+        "test": {
+            "row_count": 18570,
+            "start": "2022-01-05 11:30:00",
+            "end": "2024-02-18 04:30:00"
+        }
+    },
+    "selected_models": [
+        {
+            "target_variable": "temperature_2m",
+            "target_columns": [
+                "temperature_2m_target_t_plus_24h",
+                "temperature_2m_target_t_plus_48h",
+                "temperature_2m_target_t_plus_72h"
+            ],
+            "selected_model_name": "random_forest",
+            "validation_rmse_mean": 1.9694198340161317,
+            "candidate_validation_rmse_mean": {
+                "persistence": 2.2765632936330356,
+                "random_forest": 1.9694198340161317
+            },
+            "target_transform": "none",
+            "model_path": "models\\phase3\\baselines\\random_forest__temperature_2m_multi_horizon.joblib"
+        },
+        {
+            "target_variable": "precipitation",
+            "target_columns": [
+                "precipitation_target_t_plus_24h",
+                "precipitation_target_t_plus_48h",
+                "precipitation_target_t_plus_72h"
+            ],
+            "selected_model_name": "random_forest",
+            "validation_rmse_mean": 0.8162224086837145,
+            "candidate_validation_rmse_mean": {
+                "persistence": 1.013256324333873,
+                "random_forest": 0.8162224086837145
+            },
+            "target_transform": "log1p",
+            "model_path": "models\\phase3\\baselines\\random_forest__precipitation_multi_horizon.joblib"
+        }
+    ]
+}
