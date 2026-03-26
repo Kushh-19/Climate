@@ -1,0 +1,335 @@
+{
+    "dataset_name": "Baroda.csv",
+    "row_count": 123936,
+    "column_count": 19,
+    "date_start": "2010-01-01 05:30:00",
+    "date_end": "2024-02-21 04:30:00",
+    "timezone_after_cleaning": "Asia/Kolkata",
+    "expected_frequency": "h",
+    "time_index_summary": {
+        "expected_rows": 123936,
+        "observed_rows_before_reindex": 123936,
+        "duplicate_timestamps_removed": 0,
+        "missing_timestamp_rows_after_reindex": 0
+    },
+    "missing_values_by_column": {
+        "temperature_2m": 0,
+        "cloud_cover": 0,
+        "wind_direction_100m": 0,
+        "wind_direction_10m": 0,
+        "wind_speed_100m": 0,
+        "wind_speed_10m": 0,
+        "cloud_cover_high": 0,
+        "cloud_cover_mid": 0,
+        "cloud_cover_low": 0,
+        "surface_pressure": 0,
+        "relative_humidity_2m": 0,
+        "pressure_msl": 0,
+        "snow_depth": 0,
+        "snowfall": 0,
+        "rain": 0,
+        "precipitation": 0,
+        "apparent_temperature": 0,
+        "dew_point_2m": 0,
+        "wind_gusts_10m": 0
+    },
+    "summary_statistics": {
+        "temperature_2m": {
+            "count": 123936.0,
+            "mean": 25.949,
+            "std": 7.656,
+            "min": 2.976,
+            "25%": 20.876,
+            "50%": 26.398,
+            "75%": 30.948,
+            "max": 47.548
+        },
+        "relative_humidity_2m": {
+            "count": 123936.0,
+            "mean": 55.019,
+            "std": 25.167,
+            "min": 4.735,
+            "25%": 33.383,
+            "50%": 55.286,
+            "75%": 76.869,
+            "max": 100.0
+        },
+        "dew_point_2m": {
+            "count": 123936.0,
+            "mean": 14.081,
+            "std": 7.385,
+            "min": -13.702,
+            "25%": 8.298,
+            "50%": 12.676,
+            "75%": 21.848,
+            "max": 27.676
+        },
+        "apparent_temperature": {
+            "count": 123936.0,
+            "mean": 26.808,
+            "std": 8.805,
+            "min": 0.392,
+            "25%": 20.142,
+            "50%": 28.763,
+            "75%": 33.514,
+            "max": 46.866
+        },
+        "precipitation": {
+            "count": 123936.0,
+            "mean": 0.108,
+            "std": 0.651,
+            "min": 0.0,
+            "25%": 0.0,
+            "50%": 0.0,
+            "75%": 0.0,
+            "max": 31.7
+        },
+        "rain": {
+            "count": 123936.0,
+            "mean": 0.108,
+            "std": 0.651,
+            "min": 0.0,
+            "25%": 0.0,
+            "50%": 0.0,
+            "75%": 0.0,
+            "max": 31.7
+        },
+        "snowfall": {
+            "count": 123936.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "25%": 0.0,
+            "50%": 0.0,
+            "75%": 0.0,
+            "max": 0.0
+        },
+        "snow_depth": {
+            "count": 123936.0,
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "25%": 0.0,
+            "50%": 0.0,
+            "75%": 0.0,
+            "max": 0.0
+        },
+        "pressure_msl": {
+            "count": 123936.0,
+            "mean": 1008.287,
+            "std": 6.897,
+            "min": 990.0,
+            "25%": 1002.4,
+            "50%": 1008.3,
+            "75%": 1014.2,
+            "max": 1027.1
+        },
+        "surface_pressure": {
+            "count": 123936.0,
+            "mean": 982.077,
+            "std": 6.267,
+            "min": 965.247,
+            "25%": 976.73,
+            "50%": 982.261,
+            "75%": 987.413,
+            "max": 999.048
+        },
+        "cloud_cover": {
+            "count": 123936.0,
+            "mean": 21.504,
+            "std": 29.841,
+            "min": 0.0,
+            "25%": 0.0,
+            "50%": 6.0,
+            "75%": 32.1,
+            "max": 100.0
+        },
+        "cloud_cover_low": {
+            "count": 123936.0,
+            "mean": 8.159,
+            "std": 21.738,
+            "min": 0.0,
+            "25%": 0.0,
+            "50%": 0.0,
+            "75%": 2.0,
+            "max": 100.0
+        },
+        "cloud_cover_mid": {
+            "count": 123936.0,
+            "mean": 13.825,
+            "std": 23.517,
+            "min": 0.0,
+            "25%": 0.0,
+            "50%": 1.0,
+            "75%": 19.0,
+            "max": 100.0
+        },
+        "cloud_cover_high": {
+            "count": 123936.0,
+            "mean": 26.042,
+            "std": 38.823,
+            "min": 0.0,
+            "25%": 0.0,
+            "50%": 0.0,
+            "75%": 55.0,
+            "max": 100.0
+        },
+        "wind_speed_10m": {
+            "count": 123936.0,
+            "mean": 8.465,
+            "std": 4.116,
+            "min": 0.0,
+            "25%": 5.805,
+            "50%": 7.895,
+            "75%": 10.496,
+            "max": 38.197
+        },
+        "wind_speed_100m": {
+            "count": 123936.0,
+            "mean": 13.956,
+            "std": 7.027,
+            "min": 0.0,
+            "25%": 8.647,
+            "50%": 13.451,
+            "75%": 18.682,
+            "max": 57.516
+        },
+        "wind_direction_10m": {
+            "count": 123936.0,
+            "mean": 181.601,
+            "std": 105.945,
+            "min": 0.83,
+            "25%": 82.405,
+            "50%": 195.255,
+            "75%": 270.0,
+            "max": 360.0
+        },
+        "wind_direction_100m": {
+            "count": 123936.0,
+            "mean": 185.443,
+            "std": 108.153,
+            "min": 0.516,
+            "25%": 80.404,
+            "50%": 208.301,
+            "75%": 277.306,
+            "max": 360.0
+        },
+        "wind_gusts_10m": {
+            "count": 123936.0,
+            "mean": 18.063,
+            "std": 8.416,
+            "min": 1.08,
+            "25%": 11.88,
+            "50%": 16.2,
+            "75%": 23.04,
+            "max": 74.16
+        }
+    },
+    "iqr_outlier_candidates": {
+        "temperature_2m": {
+            "lower_bound": 5.769,
+            "upper_bound": 46.055,
+            "candidate_count": 129
+        },
+        "relative_humidity_2m": {
+            "lower_bound": -31.847,
+            "upper_bound": 142.098,
+            "candidate_count": 0
+        },
+        "dew_point_2m": {
+            "lower_bound": -12.028,
+            "upper_bound": 42.172,
+            "candidate_count": 8
+        },
+        "apparent_temperature": {
+            "lower_bound": 0.086,
+            "upper_bound": 53.571,
+            "candidate_count": 0
+        },
+        "precipitation": {
+            "lower_bound": 0.0,
+            "upper_bound": 0.0,
+            "candidate_count": 13953
+        },
+        "rain": {
+            "lower_bound": 0.0,
+            "upper_bound": 0.0,
+            "candidate_count": 13953
+        },
+        "snowfall": {
+            "lower_bound": 0.0,
+            "upper_bound": 0.0,
+            "candidate_count": 0
+        },
+        "snow_depth": {
+            "lower_bound": 0.0,
+            "upper_bound": 0.0,
+            "candidate_count": 0
+        },
+        "pressure_msl": {
+            "lower_bound": 984.7,
+            "upper_bound": 1031.9,
+            "candidate_count": 0
+        },
+        "surface_pressure": {
+            "lower_bound": 960.704,
+            "upper_bound": 1003.439,
+            "candidate_count": 0
+        },
+        "cloud_cover": {
+            "lower_bound": -48.15,
+            "upper_bound": 80.25,
+            "candidate_count": 10765
+        },
+        "cloud_cover_low": {
+            "lower_bound": -3.0,
+            "upper_bound": 5.0,
+            "candidate_count": 25345
+        },
+        "cloud_cover_mid": {
+            "lower_bound": -28.5,
+            "upper_bound": 47.5,
+            "candidate_count": 11279
+        },
+        "cloud_cover_high": {
+            "lower_bound": -82.5,
+            "upper_bound": 137.5,
+            "candidate_count": 0
+        },
+        "wind_speed_10m": {
+            "lower_bound": -1.232,
+            "upper_bound": 17.532,
+            "candidate_count": 4359
+        },
+        "wind_speed_100m": {
+            "lower_bound": -6.404,
+            "upper_bound": 33.733,
+            "candidate_count": 728
+        },
+        "wind_direction_10m": {
+            "lower_bound": -198.986,
+            "upper_bound": 551.392,
+            "candidate_count": 0
+        },
+        "wind_direction_100m": {
+            "lower_bound": -214.949,
+            "upper_bound": 572.658,
+            "candidate_count": 0
+        },
+        "wind_gusts_10m": {
+            "lower_bound": -4.86,
+            "upper_bound": 39.78,
+            "candidate_count": 2126
+        }
+    },
+    "target_correlation_matrix": {
+        "temperature_2m": {
+            "temperature_2m": 1.0,
+            "precipitation": 0.0107
+        },
+        "precipitation": {
+            "temperature_2m": 0.0107,
+            "precipitation": 1.0
+        }
+    }
+}
