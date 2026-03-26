@@ -1,0 +1,101 @@
+{
+    "input_dataset": "data\\processed\\phase2\\baroda_supervised_scaled.csv.gz",
+    "phase_two_summary": "reports\\phase2\\feature_engineering_summary.json",
+    "baseline_reference_metrics": "reports\\phase3\\baseline_test_metrics.csv",
+    "candidate_models": [
+        "lstm",
+        "gru"
+    ],
+    "selection_rule": "Best recurrent architecture per target variable is chosen by the lowest mean validation RMSE across the 24h, 48h, and 72h direct forecasts.",
+    "device": "cpu",
+    "sequence_length": 72,
+    "sequence_feature_count": 30,
+    "sequence_feature_columns": [
+        "temperature_2m",
+        "relative_humidity_2m",
+        "dew_point_2m",
+        "apparent_temperature",
+        "precipitation",
+        "rain",
+        "snowfall",
+        "snow_depth",
+        "pressure_msl",
+        "surface_pressure",
+        "cloud_cover",
+        "cloud_cover_low",
+        "cloud_cover_mid",
+        "cloud_cover_high",
+        "wind_speed_10m",
+        "wind_speed_100m",
+        "wind_gusts_10m",
+        "wind_direction_10m_sin",
+        "wind_direction_10m_cos",
+        "wind_direction_100m_sin",
+        "wind_direction_100m_cos",
+        "hour_sin",
+        "hour_cos",
+        "day_of_week_sin",
+        "day_of_week_cos",
+        "month_sin",
+        "month_cos",
+        "day_of_year_sin",
+        "day_of_year_cos",
+        "is_weekend"
+    ],
+    "target_count": 6,
+    "splits": {
+        "train": {
+            "row_count": 86654,
+            "start": "2010-01-04 05:30:00",
+            "end": "2019-11-23 18:30:00"
+        },
+        "validation": {
+            "row_count": 18568,
+            "start": "2019-11-23 19:30:00",
+            "end": "2022-01-05 10:30:00"
+        },
+        "test": {
+            "row_count": 18570,
+            "start": "2022-01-05 11:30:00",
+            "end": "2024-02-18 04:30:00"
+        }
+    },
+    "selected_models": [
+        {
+            "target_variable": "temperature_2m",
+            "target_columns": [
+                "temperature_2m_target_t_plus_24h",
+                "temperature_2m_target_t_plus_48h",
+                "temperature_2m_target_t_plus_72h"
+            ],
+            "selected_model_name": "gru",
+            "best_epoch": 4,
+            "validation_rmse_mean": 1.9478419677601266,
+            "candidate_validation_rmse_mean": {
+                "lstm": 2.011375183483693,
+                "gru": 1.9478419677601266
+            },
+            "test_rmse_mean": 1.8053910397989028,
+            "target_transform": "none",
+            "checkpoint_path": "models\\phase4\\deep_learning\\gru__temperature_2m_multi_horizon.pt"
+        },
+        {
+            "target_variable": "precipitation",
+            "target_columns": [
+                "precipitation_target_t_plus_24h",
+                "precipitation_target_t_plus_48h",
+                "precipitation_target_t_plus_72h"
+            ],
+            "selected_model_name": "gru",
+            "best_epoch": 2,
+            "validation_rmse_mean": 0.8081742726106101,
+            "candidate_validation_rmse_mean": {
+                "lstm": 0.8104347577062807,
+                "gru": 0.8081742726106101
+            },
+            "test_rmse_mean": 0.63115801403924,
+            "target_transform": "log1p",
+            "checkpoint_path": "models\\phase4\\deep_learning\\gru__precipitation_multi_horizon.pt"
+        }
+    ]
+}

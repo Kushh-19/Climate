@@ -1,0 +1,13 @@
+target_column,target_variable,horizon_hours,model_name,split_name,target_transform,checkpoint_path,rmse,mae,r2
+precipitation_target_t_plus_24h,precipitation,24,lstm,validation,log1p,,0.7975742413753868,0.1719849705696106,0.10077381134033203
+precipitation_target_t_plus_24h,precipitation,24,gru,validation,log1p,,0.7982378133267073,0.17781053483486176,0.0992768406867981
+precipitation_target_t_plus_48h,precipitation,48,gru,validation,log1p,,0.8086636646654785,0.1870848387479782,0.07563257217407227
+precipitation_target_t_plus_48h,precipitation,48,lstm,validation,log1p,,0.8107322021398795,0.1835760772228241,0.07089757919311523
+precipitation_target_t_plus_72h,precipitation,72,gru,validation,log1p,,0.8176213398396446,0.19669145345687866,0.05707579851150513
+precipitation_target_t_plus_72h,precipitation,72,lstm,validation,log1p,,0.8229978296035756,0.19459734857082367,0.044634103775024414
+temperature_2m_target_t_plus_24h,temperature_2m,24,gru,validation,none,,1.6521705915474403,1.2580971717834473,0.9558330774307251
+temperature_2m_target_t_plus_24h,temperature_2m,24,lstm,validation,none,,1.7232272700364824,1.3112990856170654,0.9519522786140442
+temperature_2m_target_t_plus_48h,temperature_2m,48,gru,validation,none,,1.9798502360645547,1.490465760231018,0.9366819262504578
+temperature_2m_target_t_plus_48h,temperature_2m,48,lstm,validation,none,,2.0404599834276893,1.5295816659927368,0.9327458143234253
+temperature_2m_target_t_plus_72h,temperature_2m,72,gru,validation,none,,2.2115050756683856,1.6867661476135254,0.9210711717605591
+temperature_2m_target_t_plus_72h,temperature_2m,72,lstm,validation,none,,2.2704382969869066,1.7225805521011353,0.9168084859848022

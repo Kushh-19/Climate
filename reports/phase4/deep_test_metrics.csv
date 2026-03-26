@@ -1,0 +1,7 @@
+target_column,target_variable,horizon_hours,model_name,split_name,target_transform,checkpoint_path,rmse,mae,r2
+precipitation_target_t_plus_24h,precipitation,24,gru,test,log1p,models\phase4\deep_learning\gru__precipitation_multi_horizon.pt,0.62420494054766,0.1578594148159027,0.0706893801689148
+precipitation_target_t_plus_48h,precipitation,48,gru,test,log1p,models\phase4\deep_learning\gru__precipitation_multi_horizon.pt,0.6333088047104624,0.17672045528888702,0.04330414533615112
+precipitation_target_t_plus_72h,precipitation,72,gru,test,log1p,models\phase4\deep_learning\gru__precipitation_multi_horizon.pt,0.6359602968595975,0.17663609981536865,0.03168463706970215
+temperature_2m_target_t_plus_24h,temperature_2m,24,gru,test,none,models\phase4\deep_learning\gru__temperature_2m_multi_horizon.pt,1.5542348078021588,1.1627528667449951,0.9603503346443176
+temperature_2m_target_t_plus_48h,temperature_2m,48,gru,test,none,models\phase4\deep_learning\gru__temperature_2m_multi_horizon.pt,1.8182856855201497,1.366964340209961,0.9456672668457031
+temperature_2m_target_t_plus_72h,temperature_2m,72,gru,test,none,models\phase4\deep_learning\gru__temperature_2m_multi_horizon.pt,2.0436526260744,1.5426236391067505,0.9313109517097473
