@@ -1,31 +1,75 @@
-# Climate Change Adaptation: Micro-Climate Forecasting
+# Climate Change Adaptation: Localized Micro-Climate Forecasting
 
-This repository implements a five-phase academic pipeline for localized weather forecasting in Baroda. The project predicts `temperature_2m` and `precipitation` at 24, 48, and 72 hour horizons using both classical machine learning and PyTorch recurrent neural networks.
+This repository presents an end-to-end academic machine learning project for localized weather forecasting in **Baroda, India**, with a focus on **climate change adaptation**. The system predicts:
 
-## Project Phases
+- `temperature_2m`
+- `precipitation`
 
-1. `Phase 1`: Exploratory Data Analysis (EDA) and conservative structural cleaning.
-2. `Phase 2`: Time-series feature engineering with lags, rolling statistics, cyclical calendar encodings, and scaling.
-3. `Phase 3`: Baseline modeling with persistence and Random Forest regressors.
-4. `Phase 4`: Deep learning with PyTorch LSTM and GRU models.
-5. `Phase 5`: Academic evaluation with RMSE, MAE, R^2, extreme-event F1, and visualization.
+at **24-hour**, **48-hour**, and **72-hour** horizons using both **classical machine learning baselines** and **PyTorch recurrent neural networks**.
 
-## Repository Layout
+The work is structured as a reproducible five-phase workflow covering data cleaning, feature engineering, baseline modeling, deep learning, and academic evaluation.
 
-- `data/raw`: Original input dataset.
-- `data/interim`: Cleaned Phase 1 dataset.
-- `data/processed`: Engineered features and saved prediction outputs.
-- `models/artifacts`: Shared preprocessing artifacts.
-- `models/phase3`: Saved baseline model artifacts.
-- `models/phase4`: Saved deep-learning checkpoints.
-- `reports/phase1` to `reports/phase5`: JSON reports, CSV tables, and thesis-ready figures.
-- `src/data_pipeline`: Phase 1 and Phase 2 code.
-- `src/models`: Phase 3 to Phase 5 code and shared evaluation helpers.
-- `main.py`: Top-level CLI for executing phases.
+## Why This Project Matters
 
-## Environment Setup
+Localized micro-climate forecasting is useful for climate adaptation because real decisions are made at the city and community scale rather than from broad regional averages. This project is designed to answer two practical research questions:
 
-Create and activate a virtual environment, then install the pinned dependencies:
+1. How strong are classical machine learning baselines for localized weather forecasting?
+2. Do recurrent neural networks provide meaningful gains over those baselines at longer horizons?
+
+## Visual Preview
+
+<p align="center">
+  <img src="reports/phase1/figures/target_overview.png" alt="Phase 1 target overview" width="48%" />
+  <img src="reports/phase5/figures/rmse_comparison.png" alt="RMSE comparison across models" width="48%" />
+</p>
+
+<p align="center">
+  <img src="reports/phase1/figures/correlation_heatmap.png" alt="Correlation heatmap" width="48%" />
+  <img src="reports/phase5/figures/extreme_f1_comparison.png" alt="Extreme event F1 comparison" width="48%" />
+</p>
+
+## Key Results
+
+| Task | Best model | Main takeaway |
+| --- | --- | --- |
+| `temperature_2m` at `24h` | Random Forest | Strong short-horizon baseline with RMSE `1.54` and `R^2 = 0.961` |
+| `temperature_2m` at `48h` and `72h` | GRU | Better long-horizon temporal modeling than the baseline |
+| `precipitation` regression | Mixed | GRU is slightly better at `24h` and `48h`, while Random Forest is marginally better at `72h` |
+| Extreme heat detection | Mixed | Random Forest is best at `24h`; GRU is best at `48h` and `72h` |
+| Extreme precipitation detection | Neither | Both models fail under a strict heavy-rain threshold, exposing the imbalance challenge honestly |
+
+## Project Workflow
+
+```mermaid
+flowchart LR
+    A["Raw hourly weather data"] --> B["Phase 1<br/>EDA + cleaning"]
+    B --> C["Phase 2<br/>Feature engineering"]
+    C --> D["Phase 3<br/>Baseline models"]
+    C --> E["Phase 4<br/>PyTorch LSTM / GRU"]
+    D --> F["Phase 5<br/>Academic evaluation"]
+    E --> F
+```
+
+## Repository Guide
+
+| Path | Purpose |
+| --- | --- |
+| `src/data_pipeline/` | Phase 1 and Phase 2 preprocessing code |
+| `src/models/` | Baseline, deep-learning, and evaluation pipelines |
+| `reports/phase1` to `reports/phase5` | Generated metrics, summaries, and figures |
+| `data/interim/` | Cleaned Phase 1 dataset |
+| `main.py` | Top-level CLI runner for project phases |
+| `docs/` | Extended methodology and results documentation |
+| `.github/workflows/ci.yml` | Lightweight GitHub syntax smoke check |
+
+## Documentation Map
+
+- [Methodology](docs/METHODOLOGY.md)
+- [Results and Visuals](docs/RESULTS.md)
+
+## Quick Start
+
+Create and activate a virtual environment, then install the dependencies:
 
 ```powershell
 python -m venv venv
@@ -33,11 +77,13 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-`requirements.txt` includes the CPU PyTorch index so the deep-learning phase remains reproducible on machines without CUDA.
+Run the full pipeline:
 
-## How To Run
+```powershell
+python main.py all
+```
 
-Run individual phases:
+Run an individual phase:
 
 ```powershell
 python main.py phase1
@@ -47,23 +93,11 @@ python main.py phase4
 python main.py phase5
 ```
 
-Run the full pipeline sequentially:
+## Current Experimental Snapshot
 
-```powershell
-python main.py all
-```
-
-## Core Outputs
-
-- Phase 1 cleaned data: `data/interim/Baroda_phase1_clean.csv`
-- Phase 2 supervised datasets: `data/processed/phase2/`
-- Phase 3 reports: `reports/phase3/`
-- Phase 4 reports: `reports/phase4/`
-- Phase 5 final evaluation: `reports/phase5/`
-
-## Current Academic Findings
-
-- Random Forest is a strong baseline for short-horizon `temperature_2m` forecasting.
-- GRU performs slightly better than Random Forest at longer temperature horizons.
-- Precipitation remains the hardest target because of zero inflation and rare extremes.
-- Under a strict heavy-rain threshold, both baseline and deep models miss the rarest extreme precipitation events, which is an important thesis result rather than a failure of the evaluation.
+- Cleaned hourly rows: `123,936`
+- Engineered features: `213`
+- Forecast targets: `6`
+- Chronological split: `86,654 / 18,568 / 18,570` for train, validation, and test
+- Extreme heat threshold: `39.226 °C`
+- Extreme precipitation threshold: `3.4 mm`

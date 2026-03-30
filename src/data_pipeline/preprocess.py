@@ -1,6 +1,5 @@
 """Phase 1 pipeline for exploratory data analysis and structural cleaning.
 
-This module is intentionally limited to Phase 1 of the project:
 1. Load the raw Baroda weather dataset.
 2. Apply conservative structural cleaning.
 3. Quantify data quality and descriptive statistics.

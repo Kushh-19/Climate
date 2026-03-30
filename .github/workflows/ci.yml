@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  syntax-smoke-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Compile core Python entry points
+        run: |
+          python -m py_compile main.py
+          python -m py_compile src/data_pipeline/preprocess.py
+          python -m py_compile src/data_pipeline/feature_engineering.py
+          python -m py_compile src/models/evaluate_model.py
+          python -m py_compile src/models/train_model.py
+          python -m py_compile src/models/predict.py
+          python -m py_compile src/models/train_deep_model.py
+          python -m py_compile src/models/academic_evaluation.py
