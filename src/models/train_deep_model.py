@@ -749,7 +749,7 @@ def main() -> None:
     trainer = ClimateDeepLearningTrainer(config)
     validation_metrics_frame, test_metrics_frame, summary = trainer.run()
 
-    print("Phase 4 completed successfully.")
+    print("Recurrent-model training completed successfully.")
     print(f"Validation metrics saved to: {config.validation_metrics_path}")
     print(f"Test metrics saved to: {config.test_metrics_path}")
     print(f"Test predictions saved to: {config.predictions_path}")

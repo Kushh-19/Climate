@@ -19,10 +19,17 @@ jobs:
       - name: Compile core Python entry points
         run: |
           python -m py_compile main.py
+          python -m py_compile dashboard/streamlit_app.py
+          python -m py_compile src/__init__.py
           python -m py_compile src/data_pipeline/preprocess.py
+          python -m py_compile src/data_pipeline/__init__.py
           python -m py_compile src/data_pipeline/feature_engineering.py
+          python -m py_compile src/models/__init__.py
           python -m py_compile src/models/evaluate_model.py
           python -m py_compile src/models/train_model.py
           python -m py_compile src/models/predict.py
           python -m py_compile src/models/train_deep_model.py
           python -m py_compile src/models/academic_evaluation.py
+          python -m py_compile src/utils/__init__.py
+          python -m py_compile src/utils/helpers.py
+          python -m py_compile tests/test_main.py

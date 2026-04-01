@@ -1,91 +1,84 @@
 # Methodology
 
-This document explains the academic workflow used to build the localized micro-climate forecasting system.
+This project studies localized hourly weather forecasting for **Baroda, India**. The goal is to compare a compact machine-learning baseline against recurrent neural networks for short-term prediction.
 
-## Problem Framing
+## Problem Statement
 
-The project is designed around **direct multi-horizon forecasting** for two meteorological targets:
+The project forecasts two variables:
 
 - `temperature_2m`
 - `precipitation`
 
-Forecasts are generated for:
+Each variable is predicted at:
 
-- `t + 24h`
-- `t + 48h`
-- `t + 72h`
-
-The dataset is an hourly localized weather time series for Baroda, India. The main scientific question is whether sequence-based deep learning can improve upon strong classical baselines for short-term climate adaptation use cases.
+- `24h`
+- `48h`
+- `72h`
 
 ## Dataset Summary
 
 | Property | Value |
 | --- | --- |
-| Temporal coverage | `2010-01-01 05:30:00` to `2024-02-21 04:30:00` |
+| Coverage | `2010-01-01 05:30:00` to `2024-02-21 04:30:00` |
 | Cleaned rows | `123,936` |
 | Cleaned variables | `19` |
 | Frequency | Hourly |
 | Missing timestamps after reindexing | `0` |
 | Duplicate timestamps removed | `0` |
 
-## End-to-End Pipeline
+## End-To-End Workflow
 
 ```mermaid
 flowchart TD
-    A["Raw CSV"] --> B["Phase 1<br/>Parse timestamps<br/>Convert timezone<br/>Remove duplicates<br/>EDA"]
-    B --> C["Phase 2<br/>Wind direction encoding<br/>Calendar cycles<br/>Lag features<br/>Rolling statistics<br/>Scaling"]
-    C --> D["Phase 3<br/>Persistence baseline<br/>Random Forest"]
-    C --> E["Phase 4<br/>LSTM<br/>GRU"]
-    D --> F["Phase 5<br/>RMSE / MAE / R²<br/>Extreme-event F1<br/>Visualization"]
+    A["Raw CSV"] --> B["Data cleaning and EDA"]
+    B --> C["Feature engineering"]
+    C --> D["Baseline model training"]
+    C --> E["RNN model training"]
+    D --> F["Final comparison and reporting"]
     E --> F
 ```
 
-## Phase 1: EDA and Structural Cleaning
+## 1. Data Cleaning And EDA
 
-Objectives:
+Main tasks:
 
-- Parse the raw dataset safely.
-- Convert timestamps to `Asia/Kolkata`.
-- Remove structural artifacts such as unnamed index columns.
-- Check temporal regularity through hourly reindexing.
-- Produce descriptive statistics and visual diagnostics.
+- parse timestamps safely
+- convert time to `Asia/Kolkata`
+- remove unnamed columns and duplicate timestamps
+- reindex to a full hourly timeline
+- generate summary statistics and basic visualizations
 
-Outputs:
+Saved outputs:
 
-- Cleaned dataset: `data/interim/Baroda_phase1_clean.csv`
+- cleaned dataset: `data/interim/Baroda_phase1_clean.csv`
 - EDA summary: `reports/phase1/eda_summary.json`
-- Figures: `reports/phase1/figures/`
+- EDA figures: `reports/phase1/figures/`
 
-Key design decisions:
+Why it matters:
 
-- Local timezone conversion is important because diurnal cycles should be interpreted in local civil time.
-- Conservative cleaning was used to avoid deleting rare meteorological extremes that are scientifically meaningful.
+- local time is important for daily weather cycles
+- conservative cleaning avoids removing rare but meaningful climate events
 
-## Phase 2: Time-Series Feature Engineering
+## 2. Feature Engineering
 
-Objectives:
-
-- Convert the cleaned hourly series into a supervised learning dataset.
-- Encode cyclic temporal structure.
-- Capture short- and medium-range temporal memory through lagged and rolling features.
-- Build leakage-safe direct targets for 24h, 48h, and 72h forecasting.
+The cleaned hourly data is converted into a supervised forecasting table.
 
 Feature groups:
 
 | Feature type | Details |
 | --- | --- |
-| Calendar cycles | Hour, weekday, month, and day-of-year sine/cosine encodings |
-| Wind direction | Circular sine/cosine encoding for 10m and 100m wind direction |
+| Calendar features | cyclical hour, weekday, month, and day-of-year signals |
+| Wind direction encoding | sine and cosine transforms for circular direction values |
 | Lag features | `1, 3, 6, 12, 24, 48, 72` hour lags |
-| Rolling statistics | Rolling means and standard deviations over `6, 24, 72` hours |
-| Rolling sums | Precipitation and rain sums over `6, 24, 72` hours |
+| Rolling features | rolling means, standard deviations, and rainfall sums |
+| Forecast targets | direct targets for `24h`, `48h`, and `72h` ahead |
 
 Engineered dataset summary:
 
 | Property | Value |
 | --- | --- |
-| Supervised rows | `123,792` |
-| Rows dropped at boundaries | `144` |
+| Modeling rows | `123,792` |
+| Boundary rows removed | `144` |
 | Engineered features | `213` |
 | Forecast targets | `6` |
 | Train rows | `86,654` |
@@ -94,78 +87,80 @@ Engineered dataset summary:
 
 Leakage prevention:
 
-- Chronological splitting was used instead of shuffled sampling.
-- Rolling features were computed on `shift(1)` data so they only use past values.
-- The scaler was fit on the training split only.
+- chronological splitting is used instead of random shuffling
+- rolling features are computed from shifted history only
+- the scaler is fit on the training split only
 
-## Phase 3: Baseline Modeling
+## 3. Baseline Modeling
 
 Candidate models:
 
-- Persistence baseline
+- persistence baseline
 - Random Forest regressor
 
-Selection rule:
+Model selection rule:
 
-- Best model per target family chosen by the lowest **mean validation RMSE** across the three forecast horizons.
+- choose the best model per target family using the lowest average validation RMSE across the three forecast horizons
 
-Why this phase matters academically:
+Why this step is useful:
 
-- A forecasting project should never jump directly to LSTM or GRU without a meaningful baseline.
-- Strong classical baselines often remain competitive, especially for structured environmental data.
+- it gives a strong reference before using deep learning
+- it makes the final comparison more honest and academically defensible
 
-## Phase 4: Deep Learning
+## 4. Recurrent Deep Learning
 
-Candidate recurrent models:
+Candidate sequence models:
 
 - LSTM
 - GRU
 
-Deep-learning setup:
+Training setup:
 
 | Parameter | Value |
 | --- | --- |
 | Sequence length | `72` hours |
 | Hidden size | `48` |
-| Number of layers | `1` |
+| Layers | `1` |
 | Batch size | `1024` |
 | Max epochs | `6` |
 | Patience | `2` |
 
-Important methodological decisions:
+Important design choices:
 
-- Only contemporaneous and cyclical features were used as sequence inputs so the recurrent models learn temporal memory directly.
-- Precipitation targets used `log1p` transformation and rainy-event weighting to address strong skewness and zero inflation.
+- only current weather variables and cyclical features are used as sequence inputs
+- precipitation targets use `log1p` transformation
+- rainy samples receive higher loss weight to handle imbalance
 
-## Phase 5: Academic Evaluation
+## 5. Final Evaluation
 
 Regression metrics:
 
 - RMSE
 - MAE
-- `R^2`
+- `R2`
 
-Event-detection metrics:
+Extreme-event metrics:
 
 - Precision
 - Recall
 - F1-score
 
-Extreme-event thresholds:
+Extreme thresholds:
 
-- Extreme heat: `39.226 °C`
-- Extreme precipitation: `3.4 mm`
+- temperature: `39.226 deg C`
+- precipitation: `3.4 mm`
 
-Thresholds were derived from the **training split only**, which is essential to avoid evaluation leakage.
+These thresholds are taken from the training split only, which avoids information leakage during evaluation.
 
-## Research Strengths
+## Strengths
 
-- Strict chronological validation and testing
-- Clear baseline-before-deep-learning progression
-- Honest treatment of precipitation imbalance
-- Reproducible outputs stored as versionable artifacts
+- chronological train, validation, and test design
+- baseline-first modeling strategy
+- clear comparison between classical ML and deep learning
+- report-ready saved tables and visuals
 
-## Known Limitations
+## Limitations
 
-- Heavy-rain events remain underdetected by both model families.
-- There is no automated data ingestion or scheduled retraining pipeline yet.
+- rare heavy-rain events are still missed by both model families
+- the raw dataset is expected locally and is not bundled into the tracked repository
+- this repository is organized for academic demonstration rather than production deployment

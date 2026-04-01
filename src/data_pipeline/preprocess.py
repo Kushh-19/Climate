@@ -311,7 +311,7 @@ def main() -> None:
     pipeline = ClimatePhaseOnePipeline(config)
     dataframe, report = pipeline.run()
 
-    print("Phase 1 completed successfully.")
+    print("Data cleaning and EDA completed successfully.")
     print(f"Cleaned dataset saved to: {config.cleaned_data_path}")
     print(f"EDA report saved to: {config.report_path}")
     print(f"Figures saved to: {config.figures_dir}")

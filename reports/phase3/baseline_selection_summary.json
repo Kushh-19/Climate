@@ -111,10 +111,10 @@
                 "temperature_2m_target_t_plus_72h"
             ],
             "selected_model_name": "random_forest",
-            "validation_rmse_mean": 1.9694198340161317,
+            "validation_rmse_mean": 1.9741928271084543,
             "candidate_validation_rmse_mean": {
                 "persistence": 2.2765632936330356,
-                "random_forest": 1.9694198340161317
+                "random_forest": 1.9741928271084543
             },
             "target_transform": "none",
             "model_path": "models\\phase3\\baselines\\random_forest__temperature_2m_multi_horizon.joblib"
@@ -127,10 +127,10 @@
                 "precipitation_target_t_plus_72h"
             ],
             "selected_model_name": "random_forest",
-            "validation_rmse_mean": 0.8162224086837145,
+            "validation_rmse_mean": 0.8167231692574405,
             "candidate_validation_rmse_mean": {
                 "persistence": 1.013256324333873,
-                "random_forest": 0.8162224086837145
+                "random_forest": 0.8167231692574405
             },
             "target_transform": "log1p",
             "model_path": "models\\phase3\\baselines\\random_forest__precipitation_multi_horizon.joblib"

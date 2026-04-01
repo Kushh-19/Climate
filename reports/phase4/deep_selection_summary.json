@@ -70,12 +70,12 @@
             ],
             "selected_model_name": "gru",
             "best_epoch": 4,
-            "validation_rmse_mean": 1.9478419677601266,
+            "validation_rmse_mean": 1.9416577462319848,
             "candidate_validation_rmse_mean": {
-                "lstm": 2.011375183483693,
-                "gru": 1.9478419677601266
+                "lstm": 2.0113742204338965,
+                "gru": 1.9416577462319848
             },
-            "test_rmse_mean": 1.8053910397989028,
+            "test_rmse_mean": 1.7957683150644914,
             "target_transform": "none",
             "checkpoint_path": "models\\phase4\\deep_learning\\gru__temperature_2m_multi_horizon.pt"
         },
@@ -88,12 +88,12 @@
             ],
             "selected_model_name": "gru",
             "best_epoch": 2,
-            "validation_rmse_mean": 0.8081742726106101,
+            "validation_rmse_mean": 0.8081742479068255,
             "candidate_validation_rmse_mean": {
-                "lstm": 0.8104347577062807,
-                "gru": 0.8081742726106101
+                "lstm": 0.810432429480894,
+                "gru": 0.8081742479068255
             },
-            "test_rmse_mean": 0.63115801403924,
+            "test_rmse_mean": 0.6311390068250282,
             "target_transform": "log1p",
             "checkpoint_path": "models\\phase4\\deep_learning\\gru__precipitation_multi_horizon.pt"
         }

@@ -488,7 +488,7 @@ def main() -> None:
     evaluator = AcademicClimateEvaluator(config)
     regression_frame, extreme_frame, summary = evaluator.run()
 
-    print("Phase 5 completed successfully.")
+    print("Final evaluation completed successfully.")
     print(f"Regression comparison saved to: {config.regression_output_path}")
     print(f"Extreme-event metrics saved to: {config.extreme_output_path}")
     print(f"Extreme thresholds saved to: {config.thresholds_output_path}")

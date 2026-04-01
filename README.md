@@ -1,75 +1,52 @@
-# Climate Change Adaptation: Localized Micro-Climate Forecasting
+# Localized Climate Forecasting for Baroda
 
-This repository presents an end-to-end academic machine learning project for localized weather forecasting in **Baroda, India**, with a focus on **climate change adaptation**. The system predicts:
+This repository is a college semester project focused on short-term weather forecasting for **Baroda, India**. It predicts:
 
 - `temperature_2m`
 - `precipitation`
 
-at **24-hour**, **48-hour**, and **72-hour** horizons using both **classical machine learning baselines** and **PyTorch recurrent neural networks**.
+for **24-hour**, **48-hour**, and **72-hour** horizons using:
 
-The work is structured as a reproducible five-phase workflow covering data cleaning, feature engineering, baseline modeling, deep learning, and academic evaluation.
+- a compact baseline pipeline built around **Random Forest**
+- a recurrent deep-learning pipeline built around **LSTM** and **GRU**
 
-## Why This Project Matters
+The project is designed for **local execution, report writing, and classroom presentation**. It is not intended as a deployment-ready production system.
 
-Localized micro-climate forecasting is useful for climate adaptation because real decisions are made at the city and community scale rather than from broad regional averages. This project is designed to answer two practical research questions:
+## What The Project Includes
 
-1. How strong are classical machine learning baselines for localized weather forecasting?
-2. Do recurrent neural networks provide meaningful gains over those baselines at longer horizons?
+- cleaned hourly climate data preparation
+- time-series feature engineering
+- baseline vs deep-learning model comparison
+- regression and extreme-event evaluation
+- a simple local Streamlit dashboard for presentation
 
-## Visual Preview
-
-<p align="center">
-  <img src="reports/phase1/figures/target_overview.png" alt="Phase 1 target overview" width="48%" />
-  <img src="reports/phase5/figures/rmse_comparison.png" alt="RMSE comparison across models" width="48%" />
-</p>
-
-<p align="center">
-  <img src="reports/phase1/figures/correlation_heatmap.png" alt="Correlation heatmap" width="48%" />
-  <img src="reports/phase5/figures/extreme_f1_comparison.png" alt="Extreme event F1 comparison" width="48%" />
-</p>
-
-## Key Results
-
-| Task | Best model | Main takeaway |
-| --- | --- | --- |
-| `temperature_2m` at `24h` | Random Forest | Strong short-horizon baseline with RMSE `1.54` and `R^2 = 0.961` |
-| `temperature_2m` at `48h` and `72h` | GRU | Better long-horizon temporal modeling than the baseline |
-| `precipitation` regression | Mixed | GRU is slightly better at `24h` and `48h`, while Random Forest is marginally better at `72h` |
-| Extreme heat detection | Mixed | Random Forest is best at `24h`; GRU is best at `48h` and `72h` |
-| Extreme precipitation detection | Neither | Both models fail under a strict heavy-rain threshold, exposing the imbalance challenge honestly |
-
-## Project Workflow
+## Workflow
 
 ```mermaid
 flowchart LR
-    A["Raw hourly weather data"] --> B["Phase 1<br/>EDA + cleaning"]
-    B --> C["Phase 2<br/>Feature engineering"]
-    C --> D["Phase 3<br/>Baseline models"]
-    C --> E["Phase 4<br/>PyTorch LSTM / GRU"]
-    D --> F["Phase 5<br/>Academic evaluation"]
+    A["Raw weather CSV"] --> B["Data cleaning and EDA"]
+    B --> C["Feature engineering"]
+    C --> D["Baseline training"]
+    C --> E["RNN training"]
+    D --> F["Final comparison and visual reports"]
     E --> F
 ```
 
-## Repository Guide
+## Project Structure
 
 | Path | Purpose |
 | --- | --- |
-| `src/data_pipeline/` | Phase 1 and Phase 2 preprocessing code |
-| `src/models/` | Baseline, deep-learning, and evaluation pipelines |
-| `reports/phase1` to `reports/phase5` | Generated metrics, summaries, and figures |
-| `data/interim/` | Cleaned Phase 1 dataset |
-| `main.py` | Top-level CLI runner for project phases |
-| `docs/` | Extended methodology and results documentation |
-| `.github/workflows/ci.yml` | Lightweight GitHub syntax smoke check |
+| `main.py` | Simple command runner for the full workflow |
+| `dashboard/streamlit_app.py` | Local presentation dashboard |
+| `src/data_pipeline/` | Data cleaning and feature engineering code |
+| `src/models/` | Baseline training, deep-learning training, and evaluation |
+| `src/utils/` | Shared helpers for the local dashboard |
+| `reports/` | Saved summaries, figures, and model-comparison tables |
+| `docs/` | Project methodology and result interpretation |
 
-## Documentation Map
+## Setup
 
-- [Methodology](docs/METHODOLOGY.md)
-- [Results and Visuals](docs/RESULTS.md)
-
-## Quick Start
-
-Create and activate a virtual environment, then install the dependencies:
+Create a virtual environment and install the dependencies:
 
 ```powershell
 python -m venv venv
@@ -77,27 +54,56 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-Run the full pipeline:
+Before running the workflow, place the raw dataset at:
+
+```text
+data/raw/Baroda.csv
+```
+
+## Run The Project
+
+Run the full workflow:
 
 ```powershell
 python main.py all
 ```
 
-Run an individual phase:
+Useful individual commands:
 
 ```powershell
-python main.py phase1
-python main.py phase2
-python main.py phase3
-python main.py phase4
-python main.py phase5
+python main.py prepare-data
+python main.py train-baseline
+python main.py train-rnn
+python main.py evaluate
 ```
 
-## Current Experimental Snapshot
+Older commands like `phase1` to `phase5` still work for backward compatibility, but the simplified commands above are the preferred interface.
 
-- Cleaned hourly rows: `123,936`
-- Engineered features: `213`
-- Forecast targets: `6`
-- Chronological split: `86,654 / 18,568 / 18,570` for train, validation, and test
-- Extreme heat threshold: `39.226 °C`
-- Extreme precipitation threshold: `3.4 mm`
+## Open The Dashboard
+
+After the reports are generated, launch the local dashboard:
+
+```powershell
+streamlit run dashboard/streamlit_app.py
+```
+
+## Result Snapshot
+
+| Target | Horizon | Best model | Main observation |
+| --- | --- | --- | --- |
+| `temperature_2m` | `24h` | Random Forest | Strong short-range baseline with very high `R2` |
+| `temperature_2m` | `48h` and `72h` | GRU | Sequence modeling helps at longer horizons |
+| `precipitation` | `24h` and `48h` | GRU | Small regression gains over the baseline |
+| `precipitation` | `72h` | Random Forest | Baseline stays competitive |
+| Extreme precipitation | All horizons | No clear winner | Rare heavy-rain events remain difficult for both approaches |
+
+## Documentation
+
+- [Methodology](docs/METHODOLOGY.md)
+- [Results](docs/RESULTS.md)
+
+## Notes For Submission
+
+- The saved outputs in `reports/` are meant to support a semester report or viva presentation.
+- The dashboard is optional but useful for demonstrating the project cleanly on a laptop.
+- The repository keeps the generated report folders from the original experimental workflow, but the public command surface has been simplified.

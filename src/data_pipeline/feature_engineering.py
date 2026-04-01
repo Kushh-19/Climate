@@ -359,7 +359,7 @@ def main() -> None:
     feature_engineer = ClimatePhaseTwoFeatureEngineer(config)
     supervised_dataframe, scaled_dataframe, report = feature_engineer.run()
 
-    print("Phase 2 completed successfully.")
+    print("Feature engineering completed successfully.")
     print(f"Unscaled supervised dataset saved to: {config.unscaled_output_path}")
     print(f"Scaled supervised dataset saved to: {config.scaled_output_path}")
     print(f"Scaler artifact saved to: {config.scaler_artifact_path}")
